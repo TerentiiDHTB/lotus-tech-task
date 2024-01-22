@@ -1,0 +1,1 @@
+export {PersonSearchingForm} from "./ui/ui.tsx";

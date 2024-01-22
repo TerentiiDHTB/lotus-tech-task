@@ -1,0 +1,19 @@
+.personWrapper{
+  width: 98%;
+
+  padding: 0.5vh;
+
+  border: 1px solid grey;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  text-decoration: none;
+  color: black;
+
+  &:hover{
+    border-color: hotpink;
+  }
+}
