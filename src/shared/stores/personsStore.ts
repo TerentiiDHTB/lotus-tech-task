@@ -1,11 +1,12 @@
 import {makeAutoObservable, runInAction} from "mobx";
 
-import {PersonInfoT} from "@/shared/types/PersonInfoT.ts";
+import {PersonInfoT} from "@/entities/person";
+
 import {searchPersonByName} from "@/shared/api/searchPersonByName.ts";
 
 class PersonsStore{
-    private persons: PersonInfoT[] = []
-    private _isPending: boolean = false
+    private persons: PersonInfoT[] = [];
+    private _isPending: boolean = false;
 
     get isPending(): boolean {return this._isPending}
 
@@ -17,8 +18,8 @@ class PersonsStore{
                 .then(res => {
                     runInAction(()=>{
                         this.persons = []
-
-                        //можно использовать спред оператор, но тогда надо следить за тем, что вернет бэк, иначе вернет лишние поля
+                        //this.persons = res
+                        //можно использовать spread оператор, но тогда надо следить за тем, что вернет бэк, иначе появятся лишние поля
                         //{...i}
                         //по факту весь цикл большой костыль, из-за того, что используется стороннее апи
                         for (const i of res){

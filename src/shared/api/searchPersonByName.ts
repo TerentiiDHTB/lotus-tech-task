@@ -5,5 +5,8 @@ export const searchPersonByName = async (name: string)=> {
         .then(res => {
             return res.data.results
         })
-        .catch(err => console.log(err)))
+        .catch(err => {
+            console.log(err);
+            return [];
+        }));
 }

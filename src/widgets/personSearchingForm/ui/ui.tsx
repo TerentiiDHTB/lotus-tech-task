@@ -6,12 +6,14 @@ import {observer} from "mobx-react-lite";
 import {personsStore} from "@/shared/stores/personsStore.ts";
 
 import {Person} from "@/entities/person";
+import {enterClickHandler} from "@/widgets/personSearchingForm/model/enterClickHandler.ts";
 
+//вообще, поиск можно было выделить как часть бизнес логики, и вытащить в папку features
 const PersonSearchInput = observer(() => {
     const [searchRequest, setSearchRequest] = useState<string>("")
 
     return (
-        <div className={styles.nameInputField}>
+        <div className={styles.nameInputField} onKeyDown={(event) => enterClickHandler(event, searchRequest)}>
             <input
                 value={searchRequest}
                 onChange={event => {
@@ -22,6 +24,7 @@ const PersonSearchInput = observer(() => {
 
             <button
                 onClick={() => {personsStore.searchPersonsByName(searchRequest)}}
+                disabled={personsStore.isPending}
             >
                 🔎
             </button>
